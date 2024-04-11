@@ -13,9 +13,13 @@ RUN npm install -g @angular/cli
 
 # Install odoo
 ENV ODOO_VERSION 16.0
-ENV ODOO_RELEASE latest
-RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.odoo_16.0.20240217_all.deb \
+ENV ODOO_RELEASE 20240217
+RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \ # ACCURSED TYPO RESOLVED
     && sudo apt-get update \
+    && sudo apt-get -y install --no-install-recommends ./odoo.deb \
+    && sudo rm -rf /var/lib/apt/lists/* odoo.deb
+
+&& sudo apt-get update \
     && sudo apt-get -y install --no-install-recommends ./odoo.deb \
     && sudo rm -rf /var/lib/apt/lists/* odoo.deb
 
