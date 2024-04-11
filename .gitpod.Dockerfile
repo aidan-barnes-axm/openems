@@ -19,10 +19,6 @@ RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/od
     && sudo apt-get -y install --no-install-recommends ./odoo.deb \
     && sudo rm -rf /var/lib/apt/lists/* odoo.deb
 
-&& sudo apt-get update \
-    && sudo apt-get -y install --no-install-recommends ./odoo.deb \
-    && sudo rm -rf /var/lib/apt/lists/* odoo.deb
-
 # Install wkhtmltopdf
 ENV WKHTMLTOPDF_VERSION 0.12.6.1-2
 ENV WKHTMLTOPDF_RELEASE jammy_amd64
